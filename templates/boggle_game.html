@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Boggle Game{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <section id="boggle_game">
+        <table class="board">
+            {% for row in board %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{cell}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+        <div>
+        <p>Current Highscore is <b>{{highscore}}</b> after <b>{{nplays}}</b> plays.</p>
+        </div>
+
+        <div>
+            <p>Score:<b class="score">0</b></p>
+            <p>Game Clock:<b class="timer"></b></p>
+        </div>
+
+        <form method="POST" class="add-word" onsubmit="return false">
+            <h2>Submit a Guess</h2>
+            <label for="guess_word">Guess:</label>
+            <input type="text" id="guess_word" class="word" name="guess" placeholder="Enter guess" autofocus/>
+            <button type="submit" id ="guess_btn" class="btn btn-primary btn-sm">Submit</button>
+        </form>
+
+        <div>
+            <!-- This is where our message from the server will be displayed, using Javascript -->
+            <p class="msg">
+
+            </p>
+        </div>
+
+        <div>
+            <ul class="words">
+                <!-- Words that are valid and are on the board will be displayed here using JS -->
+
+            </ul>
+
+        </div>
+
+        <div>
+            <form action="/boggle/refresh" class=".refresh_form">
+            <button id="refresh" name="refresh-btn" class="btn btn-sm btn-primary">Refresh</button>
+            </form>
+        </div>
+
+        
+
+
+    </section>
+</div>
+
+
+{% endblock %}
